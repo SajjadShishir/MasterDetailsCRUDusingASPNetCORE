@@ -20,20 +20,29 @@ namespace MasterDetailsCRUDusingASPNetCORE.Models.ViewModels
         [Display(Name = "Last Name", Description = "The employee's first name.")]
         public string LastName { get; set; } = null!;
 
+        [Required(ErrorMessage = "Mobile number is required.")]
+        [StringLength(15, ErrorMessage = "Mobile number cannot exceed 15 characters.")]
+        [RegularExpression(@"^\+?[0-9]*$", ErrorMessage = "Mobile number must be numeric and can optionally start with a '+'.")]
+        [Display(Name = "Mobile Number", Description = "The employee's mobile number.")]
+        public string Mobile { get; set; } = null!;
+
+        [Required(ErrorMessage = "Email is required.")]
+        [EmailAddress(ErrorMessage = "Invalid email format.")]
+        [StringLength(100, ErrorMessage = "Email cannot exceed 100 characters.")]
+        [Display(Name = "Email Address", Description = "The employee's email address.")]
+        public string Email { get; set; } = null!;
+
         [Required]
         [Display(Name = "Active Status")]
         public bool IsActive { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
-        public DateOnly JoinDate { get; set; }
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        public DateTime JoinDate { get; set; }
 
         [Display(Name = "Upload Image")]
         public IFormFile ImageFile { get; set; }
-
-        [Required]
-        public string ImageName { get; set; }
-
         [Required]
         public string ImageUrl { get; set; }
 

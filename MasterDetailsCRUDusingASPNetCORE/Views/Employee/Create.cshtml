@@ -1,1 +1,132 @@
-﻿
+﻿@model MasterDetailsCRUDusingASPNetCORE.Models.ViewModels.EmployeeViewModel
+
+@{
+    ViewData["Title"] = "Create Employee";   
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create Employee</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h2 class="float-start">Add New Employee</h2>
+                <a class="float-end btn btn-success btn-lg" asp-area="" asp-controller="Employee"
+                   asp-action="Index">Employee List</a>
+            </div>
+            <div class="card-body">
+
+                <form id="empForm" enctype="multipart/form-data" asp-action="Create"
+                      asp-controller="Employee" method="post">
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group mb-2">
+                                    <label asp-for="FirstName" class="control-label mb-1"></label>
+                                    <input asp-for="FirstName" class="form-control" />
+                                    <span asp-validation-for="FirstName"
+                                          class="text-danger"></span>
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label asp-for="LastName" class="control-label mb-1"></label>
+                                    <input asp-for="LastName" class="form-control" />
+                                    <span asp-validation-for="LastName"
+                                          class="text-danger"></span>
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label asp-for="JoinDate" class="control-label mb-1"></label>
+                                    <input asp-for="JoinDate" class="form-control" type="date" />
+                                    <span asp-validation-for="JoinDate" class="text-danger"></span>
+                                </div>                            
+                                <div class="form-group mb-2">
+                                    <label asp-for="Salary" class="control-label mb-1"></label>
+                                    <input asp-for="Salary" class="form-control" />
+                                    <span asp-validation-for="Salary" class="text-danger"></span>
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label asp-for="Mobile" class="control-label mb-1"></label>
+                                    <input asp-for="Mobile" class="form-control" />
+                                    <span asp-validation-for="Mobile" class="text-danger"></span>
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label asp-for="Email" class="control-label mb-1"></label>
+                                    <input asp-for="Email" class="form-control" />
+                                    <span asp-validation-for="Email" class="text-danger"></span>
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label asp-for="IsActive" class="control-label mb-1"></label>
+                                    <input type="checkbox" asp-for="IsActive" />
+                                    <span asp-validation-for="IsActive" class="text-danger"></span>
+                                </div>
+                                <div class="row btn-group mb-2">
+                                    <div class="form-group col-md-8">
+                                        <label asp-for="ImageFile" class="control-label mb-1"></label>
+                                        <div class="customFile">
+                                            <input asp-for="ImageFile" type="file" class="custom-file-input"
+                                                   onchange="readUrl(this)" />
+
+                                            <label class="custom-file-label invisible"
+                                                   for="customFile">Choose File</label>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-4">
+                                        <img id="imageFile" src="~/images/noimg.png"
+                                             class="img-thumbnail" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <button type="button" class="btn btn-primary float-end mb-3"
+                                        id="addExperienceBtn" onclick="addExperience()">
+                                    Add Experience
+                                </button>
+
+                                <div id="expTableContainer">
+                                    @Html.Partial("~/Views/Shared/_ExperiencesTable.cshtml",
+
+                                             Model.Experiences)
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-footer">
+                        <button type="submit" id="saveEmployee" class="btn btn-primary">
+                            Insert Employee
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* @section Scripts {
+    <script>
+        function addExperience() {
+            const experiencesDiv = document.getElementById('experiences');
+            const index = experiencesDiv.children.length;
+
+            const newExperience = `
+                <div class="experience-group">
+                    <h4>Experience ${index}</h4>
+                    <div class="form-group">
+                        <label for="Experiences_${index}__JobTitle">Job Title</label>
+                        <input name="Experiences[${index}].JobTitle" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                                        <label for="Experiences_${index}__InstitutionName">InstitutionName</label>
+                                <input name="Experiences[${index}].InstitutionName" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                                <label for="Experiences_${index}__Duration">Start Date</label>
+                                <input name="Experiences[${index}].Duration" type="date" class="form-control" />
+                    </div>               
+                </div>`;
+
+            experiencesDiv.insertAdjacentHTML('beforeend', newExperience);
+        }
+    </script> *@
+@* } *@
+

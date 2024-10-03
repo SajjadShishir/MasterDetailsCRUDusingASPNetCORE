@@ -1,0 +1,44 @@
+﻿@model List<MasterDetailsCRUDusingASPNetCORE.Models.ViewModels.ExperienceViewModel>
+<table class="table table-bordered" id="experiencesTable">
+    <thead>
+        <tr>
+            <th>Job Title</th>
+            <th>InstitutionName</th>
+            <th>Duration</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Count > 0)
+        {
+            for (int i = 0; i < Model.Count; i++)
+            {
+                <tr>
+                    <td>
+                        <input type="text" name="Experiences[@i].ModuleName" class="form-control"
+                               value="@Model[i].JobTitle" />
+
+                    </td>
+                    <td>
+                        <input type="text" name="Experiences[@i].Duration" class="form-control"
+                               value="@Model[i].InstitutionName" />
+
+                    </td>
+                    <td>
+                        <input type="text" name="Experiences[@i].Duration" class="form-control"
+                               value="@Model[i].Duration" />
+
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-danger removeExperienceBtn"
+                                onclick="RemoveExperience(this)">
+                            Remove
+                        </button>
+
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
